@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Rect from './Rect';
 
-class App extends Component {
-  constructor(props) {
-    super();
-    this.title = props.title;
-    this.message = props.message;
-  }
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [flag, setFlag] = useState(false);
 
-  render() {
-    return (
+  const clickFunc = () => {
+    setCount(count + 1);
+  };
+  const changeFlag = (e) => {
+    setFlag(e.target.checked);
+  };
+
+  return (
+    <div>
+      <h1>React</h1>
+      <h4>Hooks sample</h4>
       <div>
-        <h1 className="bg-primary text-white display-4">React</h1>
-        <div className="container">
-          <p className="subtitle">draw rectangle</p>
-          <Rect x="200" y="200" w="200" h="200" c="#6ff9" r="25" />
-          <Rect x="300" y="300" w="200" h="200" c="#f6f9" r="75" />
-          <Rect x="400" y="400" w="200" h="200" c="#6669" r="100" />
-        </div>
+        <p>{count}</p>
+        <button onClick={clickFunc}>countUp</button>
       </div>
-    );
-  }
-}
+      <div>
+        <input type="checkbox" onChange={changeFlag} id="check1" />
+        <label htmlFor="check1">change form style</label>
+      </div>
+    </div>
+  );
+};
 
 export default App;
